@@ -26,10 +26,8 @@ class HighScoringWords:
                 self.letter_values[str(key).strip().lower()] = int(val)
 
     def build_leaderboard_for_word_list(self):
-        """
-        Build a leaderboard of the top scoring MAX_LEADERBOAD_LENGTH words from the complete set of valid words.
-        :return:
-        """
+        self.get_word_scores()
+        self.create_top_100_list()
 
     def build_leaderboard_for_letters(self, starting_letters):
         """
