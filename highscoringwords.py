@@ -40,11 +40,16 @@ class HighScoringWords:
         :return:
         """
 
-    def get_top_words(self):
+    def get_word_scores(self):
         for word in self.valid_words:
-            word_score = 0
-            word_letters = list(word)
-            for letter in word_letters:
-                    letter_score = self.letter_values.get(letter, 0 )
-                    word_score += letter_score
-            self.all_word_scores.update( { word: word_score} )
+            if len(word) >= self.MIN_WORD_LENGTH:
+                word_letters = list(word)
+                word_score = self.combine_letter_scores(word_letters)
+                self.all_word_scores.update( { word: word_score} )
+
+    def combine_letter_scores(self, letters):
+        total_score = 0
+        for letter in letters:
+            letter_score = self.letter_values.get(letter, 0 )
+            total_score += letter_score
+        return total_score
