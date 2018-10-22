@@ -1,3 +1,4 @@
+import operator
 __author__ = 'codesse'
 
 
@@ -53,3 +54,8 @@ class HighScoringWords:
             letter_score = self.letter_values.get(letter, 0 )
             total_score += letter_score
         return total_score
+
+    def create_top_100_list(self):
+        top_one_hundred = sorted(self.all_word_scores.items(), key=operator.itemgetter(1), reverse=True)[:self.MAX_LEADERBOARD_LENGTH]
+        for word, score in top_one_hundred:
+            self.leaderboard.append(word)
