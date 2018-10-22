@@ -14,6 +14,7 @@ class HighScoringWords:
         :param lettervalues: a text file containing the score for each letter in the format letter:score one per line
         :return:
         """
+        self.all_word_scores = {}
         self.leaderboard = []  # initialise an empty leaderboard
         with open(validwords) as f:
             self.valid_words = f.read().splitlines()
@@ -38,3 +39,12 @@ class HighScoringWords:
         :param starting_letters: a random string of letters from which to build words that are valid against the contents of the wordlist.txt file
         :return:
         """
+
+    def get_top_words(self):
+        for word in self.valid_words:
+            word_score = 0
+            word_letters = list(word)
+            for letter in word_letters:
+                    letter_score = self.letter_values.get(letter, 0 )
+                    word_score += letter_score
+            self.all_word_scores.update( { word: word_score} )
