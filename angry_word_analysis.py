@@ -25,9 +25,6 @@ class AngryWordAnalysis:
             self.headlines = f.read().splitlines()
 
 
-    def build_angry_word_leaderboard(self):
-        self.get_angry_score()
-        self.create_leaderboard(self.all_word_scores)
 
     def get_angry_score_for_headline(self):
         for headline in self.headlines:
@@ -42,5 +39,3 @@ class AngryWordAnalysis:
             if word.lower() in self.angry_words:
                 total_score += 1
         return total_score
-
-    
